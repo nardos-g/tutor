@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/peerjs@1.5.0/dist/peerjs.min.js"></script>
+    <!-- title  -->
+    <title>Video Call</title>
+</head>
+<body>
+    <p id="conid"></p>
+    <div id="board" style="width: 200px; height: 400px; background-color: lightgray; margin-bottom: 2em; position: relative;">
+        <video style="width: 400px; height: 400px;"></video>
+        <input onchange="sendMessage(this.value)" placeholder="write your message" type="text" style="position: absolute; bottom: 5px; background-color: white; width: 80%; margin: 'auto'; padding: 3px 6px;">
+    </div>
+
+    <input type="text" placeholder="connect to friend" onchange="handleconnect(this.value)">
+    
+    <!-- <canvas style="border: 1px solid black;"></canvas> -->
+    <script src="./peer.js"></script>
+</body>
+</html>
