@@ -73,9 +73,6 @@ peer.on("connection", function (connection) {
   })
 })
 
-// Include media
-// const canvas = document.querySelector("canvas")
-
 // const stream = canvas.captureStream()
 // stream.getTracks().forEach((track) => {
 //   peer.call()
