@@ -1,4 +1,4 @@
-import { getStroke } from "perfect-freehand/dist/esm/index.js"
+import { getStroke } from "./node_modules/perfect-freehand/dist/esm/index.js"
 import { strokeToSvg } from "./strokeToSvgPath.js"
 
 const canvas = document.querySelector("canvas")
