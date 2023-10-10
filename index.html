@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/peerjs@1.5.0/dist/peerjs.min.js"></script>
     <!-- title  -->
-    <title>Video Call</title>
+    <title>Tutor</title>
 </head>
 <body>
     <p id="conid"></p>
@@ -14,12 +14,14 @@
         <input onchange="sendMessage(this.value)" placeholder="write your message" type="text" style="position: absolute; bottom: 5px; background-color: white; width: 80%; margin: 'auto'; padding: 3px 6px;">
     </div>
 
-    <input type="text" placeholder="connect to friend" onchange="handleconnect(this.value)">
+    <input type="text" placeholder="connect to friend" onchange="callPeer(this.value)">
     
     <div>
         <canvas style="border: 1px solid black;"></canvas>
+        <video autoplay id="vid" style="width: 600px; height: 600px; border: 1px solid red; background-color: white;"></video>
     </div>
-    <script type="module" src="./peer.js"></script>
+    
     <script type="module" src="./canvasBoard.js"></script>
+    <script src="./peer.js"></script>
 </body>
 </html>

@@ -51,7 +51,7 @@ document.addEventListener("mousemove", (ev) => {
   var y = ev.screenY - boundary.top
 
   if (mouseDown) {
-    mousePath = [...mousePath, [x, y]]
+    mousePath = [...mousePath, [x, 50]]
     draw(mousePath)
   }
 })
@@ -63,4 +63,5 @@ function draw(params) {
   // make canvas path
   const canvasPath = new Path2D(svgPath)
   ctx.fill(canvasPath)
+  ctx.fillStyle = "white"
 }

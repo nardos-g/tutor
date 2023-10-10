@@ -66,14 +66,56 @@ peer.on("open", function (id) {
 
 peer.on("connection", function (connection) {
   sendmessage = makeMessenger(connection)
-  console.log({ connectionObject: connection })
   connection.on("data", function (data) {
     console.log(data)
     handleMessageRecieved(data)
   })
 })
 
-// const stream = canvas.captureStream()
-// stream.getTracks().forEach((track) => {
-//   peer.call()
-// })
+const canvas = document.querySelector("canvas")
+const canvasStream = canvas.captureStream()
+
+async function addAudio(canvasStream) {
+  const userMedia = await navigator.mediaDevices.getUserMedia({
+    video: false,
+    audio: true,
+  })
+  const audio = userMedia.getAudioTracks()[0]
+  canvasStream.getTracks().forEach((track) => canvasStream.addTrack(audio))
+}
+
+const videoEle = document.getElementById("vid")
+// ;(async () => {
+//   const mmdeia = await navigator.mediaDevices.getUserMedia({
+//     video: false,
+//     audio: true,
+//   })
+
+//   videoEle.srcObject = mmdeia
+// })()
+
+// call your peer
+async function callPeer(id) {
+  await addAudio(canvasStream)
+  let call = peer.call(id, canvasStream)
+  console.log({ call, peer, canvasStream })
+  // handleCallStream(call)
+}
+
+peer.on("call", async (call) => {
+  const audioStream = await navigator.mediaDevices.getUserMedia({
+    video: false,
+    audio: true,
+  })
+  handleCallStream(call)
+  call.answer(audioStream)
+})
+
+function handleCallStream(call) {
+  call.on("stream", (stream) => {
+    console.log({ stream })
+    console.log("srcObject exists", "srcObject" in videoEle)
+
+    videoEle.srcObject = stream
+  })
+}
